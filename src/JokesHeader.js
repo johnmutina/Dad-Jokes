@@ -4,7 +4,8 @@ class JokesHeader extends Component {
     render() {
         return (
             <div>
-                <h3>Header</h3>
+                <h3>Dad-Jokes-O-Matic</h3>
+                <button onClick={this.props.fetchJokes}>Get more jokes</button>
             </div>
         );
     }

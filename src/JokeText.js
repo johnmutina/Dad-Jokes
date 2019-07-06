@@ -4,7 +4,7 @@ class JokeText extends Component {
     render() {
         return (
             <div>
-                <h5>Text</h5>
+                <h5>{this.props.text}</h5>
             </div>
         );
     }

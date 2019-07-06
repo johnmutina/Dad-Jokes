@@ -7,9 +7,8 @@ class JokeRow extends Component {
     render() {
         return (
             <div>
-                <h4>Row</h4>
                 <JokeVote />
-                <JokeText />
+                <JokeText text={this.props.data.joke} />
                 <JokeIcon />
             </div>
         );
