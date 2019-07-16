@@ -32,7 +32,7 @@ class JokeRow extends Component {
                     handleVote={this.handleVote}
                 />
                 <JokeText text={this.props.data.joke} />
-                <JokeIcon />
+                <JokeIcon currVote={this.state.jokeVote} />
             </div>
         );
     }

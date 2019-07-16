@@ -1,0 +1,27 @@
+.JokeVote-voteContainer {
+    display: inline-block;
+    width: 60px;
+    border: 6px solid;
+    border-radius: 50%;
+    border-color: greenyellow;
+}
+
+.JokeVote-voteContainer-sad {
+    border-color: red;
+}
+
+.JokeVote-voteContainer-angry {
+    border-color: yellow;
+}
+
+.JokeVote-voteContainer-ok {
+    border-color: greenyellow;
+}
+
+.JokeVote-voteContainer-wow {
+    border-color: green;
+}
+
+.JokeVote-voteContainer-laugh {
+    border-color: darkgreen;
+}

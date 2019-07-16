@@ -1,17 +1,38 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
-
-// TODO: find the right icons for the 5 emotions
-// TODO: puth them in the defaultProps
-// TODO: create logic to select icon based on the currVote
+import FacebookEmoji from "react-facebook-emoji";
 
 class JokeIcon extends Component {
+    static defaultProps = {
+        emojis: {
+            sad: "sad",
+            angry: "angry",
+            ok: "yay",
+            wow: "wow",
+            laugh: "haha"
+        }
+    };
+
     render() {
+        // TODO: find a way to refactor this below code which is also used in JokeVote.js. Maybe it should be passed to parent and then values passed down as props.
+
+        let curEmoji = "ok";
+
+        if (this.props.currVote < -5) {
+            curEmoji = "sad";
+        } else if (this.props.currVote < 0) {
+            curEmoji = "angry";
+        } else if (this.props.currVote === 0) {
+            curEmoji = "ok";
+        } else if (this.props.currVote > 5) {
+            curEmoji = "laugh";
+        } else {
+            curEmoji = "wow";
+        }
+
         return (
             <div>
                 <h4>Icon</h4>
-                <FontAwesomeIcon icon={faCoffee} />
+                <FacebookEmoji type={this.props.emojis[curEmoji]} />
             </div>
         );
     }
