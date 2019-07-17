@@ -1,16 +1,25 @@
+.JokeVote {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
 .JokeVote-voteContainer {
-    display: inline-block;
-    width: 60px;
-    border: 6px solid;
+    margin: 0 10px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: 3px solid;
+    text-align: center;
     border-radius: 50%;
     border-color: greenyellow;
 }
 
-.JokeVote-voteContainer-sad {
+.JokeVote-voteContainer-angry {
     border-color: red;
 }
 
-.JokeVote-voteContainer-angry {
+.JokeVote-voteContainer-sad {
     border-color: yellow;
 }
 
@@ -22,6 +31,6 @@
     border-color: green;
 }
 
-.JokeVote-voteContainer-laugh {
+.JokeVote-voteContainer-haha {
     border-color: darkgreen;
 }

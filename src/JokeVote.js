@@ -1,30 +1,28 @@
 import React, { Component } from "react";
 import "./JokeVote.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 class JokeVote extends Component {
     render() {
-        let borderColorClass = "JokeVote-voteContainer-";
-        if (this.props.currVote < -5) {
-            borderColorClass += "sad";
-        } else if (this.props.currVote < 0) {
-            borderColorClass += "angry";
-        } else if (this.props.currVote === 0) {
-            borderColorClass += "ok";
-        } else if (this.props.currVote > 5) {
-            borderColorClass += "laugh";
-        } else {
-            borderColorClass += "wow";
-        }
-
+        console.log(this.props.curEmotion[1]);
         return (
-            <div>
-                <button onClick={() => this.props.handleVote("up")}>UP</button>
-                <div className={`JokeVote-voteContainer ${borderColorClass}`}>
-                    <h5>{this.props.currVote}</h5>
+            <div className="JokeVote">
+                <FontAwesomeIcon
+                    icon={faArrowUp}
+                    onClick={() => this.props.handleVote("up")}
+                />
+                <div
+                    className={`JokeVote-voteContainer JokeVote-voteContainer-${
+                        this.props.curEmotion
+                    }`}
+                >
+                    {this.props.curVote}
                 </div>
-                <button onClick={() => this.props.handleVote("down")}>
-                    DOWN
-                </button>
+                <FontAwesomeIcon
+                    icon={faArrowDown}
+                    onClick={() => this.props.handleVote("down")}
+                />
             </div>
         );
     }

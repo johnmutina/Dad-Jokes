@@ -1,0 +1,22 @@
+.JokeRow {
+    display: flex;
+    border-bottom: 2px solid #eeeeee;
+    align-items: center;
+    margin-left: 20px;
+    font-weight: 400;
+    padding: 1rem;
+}
+
+.JokeRow-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-right: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+}
+
+.JokeRow-text {
+    width: 75%;
+    font-size: 1.2rem;
+}
