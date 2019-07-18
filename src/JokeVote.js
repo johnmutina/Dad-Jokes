@@ -8,7 +8,7 @@ class JokeVote extends Component {
         return (
             <div className="JokeVote">
                 <FontAwesomeIcon
-                    className="JokeVote-arrow"
+                    className="JokeVote-arrow JokeVote-arrow-up"
                     icon={faArrowUp}
                     onClick={() => this.props.handleVote("up")}
                 />
@@ -20,7 +20,7 @@ class JokeVote extends Component {
                     {this.props.curVote}
                 </div>
                 <FontAwesomeIcon
-                    className="JokeVote-arrow"
+                    className="JokeVote-arrow JokeVote-arrow-down"
                     icon={faArrowDown}
                     onClick={() => this.props.handleVote("down")}
                 />

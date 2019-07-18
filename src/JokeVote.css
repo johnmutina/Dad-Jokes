@@ -5,10 +5,53 @@
 }
 
 .JokeVote-arrow {
+    font-size: 1.5em;
+    cursor: pointer;
     -webkit-user-select: none; /* webkit (safari, chrome) browsers */
     -moz-user-select: none; /* mozilla browsers */
     -khtml-user-select: none; /* webkit (konqueror) browsers */
     -ms-user-select: none; /* IE10+ */
+}
+
+.JokeVote-arrow-up,
+.JokeVote-arrow-down {
+    transition: all 0.3s;
+}
+
+.JokeVote-arrow-up:hover {
+    animation-name: move-up;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes move-up {
+    0%,
+    50%,
+    100% {
+        transform: translateY(0);
+    }
+    25%,
+    75% {
+        transform: translateY(-3px);
+    }
+}
+
+.JokeVote-arrow-down:hover {
+    animation-name: move-down;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes move-down {
+    0%,
+    50%,
+    100% {
+        transform: translateY(0);
+    }
+    25%,
+    75% {
+        transform: translateY(3px);
+    }
 }
 
 .JokeVote-arrow:hover {
@@ -25,6 +68,7 @@
     text-align: center;
     border-radius: 50%;
     border-color: greenyellow;
+    box-shadow: 0 10px 38px rgba(0, 0, 0, 0.2), 0 10px 12px rgba(0, 0, 0, 0.1);
 }
 
 .JokeVote-voteContainer-angry {

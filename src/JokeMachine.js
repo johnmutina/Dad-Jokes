@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import JokeRow from "./JokeRow";
 import Axios from "axios";
 import Loader from "react-loader-spinner";
+import uuid from "uuid";
 import "./JokeMachine.css";
 
 const API_URL = "https://icanhazdadjoke.com/";
@@ -13,29 +14,41 @@ class JokeMachine extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jokesObj: [],
+            jokesObj: JSON.parse(window.localStorage.getItem("jokes") || "[]"),
             isLoading: false
         };
+        this.seenJokes = new Set(this.state.jokesObj.map(j => j.joke));
         this.fetchJokes = this.fetchJokes.bind(this);
     }
 
     async componentDidMount() {
-        this.fetchJokes();
+        if (this.state.jokesObj.length === 0) {
+            this.fetchJokes();
+        }
     }
 
     async fetchJokes() {
-        this.setState({ isLoading: true });
-        let jokes = [];
-        while (jokes.length < this.props.numJokesToGet) {
-            let response = await Axios.get(API_URL, {
-                headers: { Accept: "application/json" }
+        try {
+            this.setState({ isLoading: true });
+            let jokes = [];
+            while (jokes.length < this.props.numJokesToGet) {
+                let response = await Axios.get(API_URL, {
+                    headers: { Accept: "application/json" }
+                });
+                let newJoke = response.data;
+                if (!this.seenJokes.has(newJoke.joke)) {
+                    jokes.push(response.data);
+                }
+            }
+            this.setState({
+                jokesObj: [...this.state.jokesObj, ...jokes],
+                isLoading: false
             });
-            jokes.push(response.data);
+            window.localStorage.setItem("jokes", JSON.stringify(jokes));
+        } catch (e) {
+            alert(e);
+            this.setState({ isLoading: false });
         }
-        this.setState({
-            jokesObj: [...this.state.jokesObj, ...jokes],
-            isLoading: false
-        });
     }
 
     render() {
@@ -45,12 +58,15 @@ class JokeMachine extends Component {
                     <h1 className="JokeMachine-title">
                         <span>Dad</span> Jokes
                     </h1>
-                    <img src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg" />
+                    <img
+                        alt="laughing icon"
+                        src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg"
+                    />
                     <button
                         className="JokeMachine-getmore"
                         onClick={this.fetchJokes}
                     >
-                        New jokes
+                        Fetch Jokes
                     </button>
                 </div>
                 <div className="JokeMachine-jokes">
@@ -65,7 +81,7 @@ class JokeMachine extends Component {
                         </div>
                     ) : (
                         this.state.jokesObj.map(joke => (
-                            <JokeRow key={joke.id} data={joke} />
+                            <JokeRow key={uuid()} data={joke} />
                         ))
                     )}
                 </div>
