@@ -18,13 +18,13 @@
 }
 
 .JokeMachine-sidebar img {
-    width: 50%;
+    width: 40%;
     border-radius: 50%;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
 }
 
 .JokeMachine-title {
-    font-size: 4rem;
+    font-size: 3rem;
     margin: 2rem;
     color: white;
     font-weight: 300;
@@ -43,4 +43,11 @@
     width: 70%;
     overflow: scroll;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
+}
+
+.JokeMachine-loaderBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }

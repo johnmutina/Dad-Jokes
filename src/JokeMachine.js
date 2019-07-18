@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import JokeRow from "./JokeRow";
 import Axios from "axios";
+import Loader from "react-loader-spinner";
 import "./JokeMachine.css";
 
 const API_URL = "https://icanhazdadjoke.com/";
@@ -12,7 +13,8 @@ class JokeMachine extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jokesObj: []
+            jokesObj: [],
+            isLoading: false
         };
         this.fetchJokes = this.fetchJokes.bind(this);
     }
@@ -22,6 +24,7 @@ class JokeMachine extends Component {
     }
 
     async fetchJokes() {
+        this.setState({ isLoading: true });
         let jokes = [];
         while (jokes.length < this.props.numJokesToGet) {
             let response = await Axios.get(API_URL, {
@@ -30,7 +33,8 @@ class JokeMachine extends Component {
             jokes.push(response.data);
         }
         this.setState({
-            jokesObj: [...this.state.jokesObj, ...jokes]
+            jokesObj: [...this.state.jokesObj, ...jokes],
+            isLoading: false
         });
     }
 
@@ -50,9 +54,20 @@ class JokeMachine extends Component {
                     </button>
                 </div>
                 <div className="JokeMachine-jokes">
-                    {this.state.jokesObj.map(joke => (
-                        <JokeRow key={joke.id} data={joke} />
-                    ))}
+                    {this.state.isLoading ? (
+                        <div className="JokeMachine-loaderBox">
+                            <Loader
+                                type="Puff"
+                                color="#9575CD"
+                                height="130"
+                                width="130"
+                            />
+                        </div>
+                    ) : (
+                        this.state.jokesObj.map(joke => (
+                            <JokeRow key={joke.id} data={joke} />
+                        ))
+                    )}
                 </div>
             </div>
         );
